@@ -10,7 +10,6 @@ const enlaces = [
   { href: "/productos", texto: "Productos" },
   { href: "/servicios", texto: "Servicios" },
   { href: "/nosotros", texto: "Nosotros" },
-  { href: "/marcas", texto: "Marcas" },
   { href: "/contacto", texto: "Contacto" },
 ];
 
