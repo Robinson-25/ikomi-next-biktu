@@ -1,40 +1,32 @@
-import Image from "next/image";
 import Link from "next/link";
+import type { Producto } from "@/data/productos";
 
-type ProductCardProps = {
-  producto: {
-    slug: string;
-    nombre: string;
-    descripcion: string;
-    imagen: string;
-    alt: string;
-  };
+type Props = {
+  producto: Producto;
 };
 
-export default function ProductCard({ producto }: ProductCardProps) {
+export default function ProductCard({ producto }: Props) {
   return (
-    <article className="group overflow-hidden rounded-xl border border-linea bg-white transition duration-300 hover:-translate-y-1 hover:shadow-lg focus-within:shadow-lg motion-reduce:transform-none motion-reduce:transition-none">
-      <Image
-        src={producto.imagen}
-        alt={producto.alt}
-        width={640}
-        height={480}
-        sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
-        className="aspect-[4/3] w-full bg-surface object-contain p-6"
-      />
+    <article className="flex h-full flex-col rounded-xl border border-linea bg-white p-6 transition duration-300 hover:-translate-y-1 hover:shadow-lg motion-reduce:transform-none motion-reduce:transition-none">
+      <p className="text-sm font-bold uppercase tracking-wide text-primary">
+        {producto.categoria}
+      </p>
 
-      <div className="p-6">
-        <h3 className="text-xl font-bold">{producto.nombre}</h3>
-        <p className="mt-3 leading-relaxed text-muted">
-          {producto.descripcion}
-        </p>
-        <Link
-          href={`/productos/${producto.slug}`}
-          className="mt-5 inline-flex font-semibold text-primary underline-offset-4 hover:underline"
-        >
-          Ver detalle de {producto.nombre}
-        </Link>
-      </div>
+      <h2 className="mt-4 text-2xl font-bold text-ink">
+        {producto.nombre}
+      </h2>
+
+      <p className="mt-4 flex-1 leading-relaxed text-muted">
+        {producto.descripcion}
+      </p>
+
+      <Link
+        href={`/productos/${producto.slug}`}
+        className="mt-6 inline-flex self-start rounded-lg bg-primary px-5 py-3 font-semibold text-white transition-colors hover:bg-primary-dark"
+      >
+        Ver detalle
+        <span className="sr-only"> de {producto.nombre}</span>
+      </Link>
     </article>
   );
 }
