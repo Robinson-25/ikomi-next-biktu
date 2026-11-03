@@ -1,36 +1,110 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# IKOMI Perú — Proyecto académico
 
-## Getting Started
+Sitio web desarrollado con Next.js, App Router, TypeScript y Tailwind CSS para el curso de Desarrollo de Aplicaciones Web Avanzado.
 
-First, run the development server:
+## Requisitos
+
+- Node.js compatible con la versión de Next.js del proyecto.
+- npm.
+- Git.
+
+## Instalar el proyecto
+
+Clonar el repositorio:
+
+```bash
+git clone https://github.com/Robinson-25/ikomi-next-biktu.git
+```
+
+Entrar a la carpeta:
+
+```bash
+cd ikomi-next-biktu
+```
+
+Instalar las dependencias:
+
+```bash
+npm install
+```
+
+## Ejecutar en desarrollo
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abrir http://localhost:3000 en el navegador.
+Si ese puerto está ocupado, usar la dirección que indique la terminal.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Compilar y ejecutar en producción
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Crear la compilación:
 
-## Learn More
+```bash
+npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+Después de compilar correctamente:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Organización del proyecto
 
-## Deploy on Vercel
+| Carpeta o archivo | Función |
+|---|---|
+| src/app | Páginas y rutas del sitio |
+| src/app/layout.tsx | Diseño compartido con Navbar y Footer |
+| src/app/page.tsx | Página de inicio |
+| src/app/globals.css | Estilos y colores generales |
+| src/components | Componentes reutilizables |
+| src/data | Datos de los productos |
+| public/images | Imágenes del sitio |
+| evidencias | Capturas de las pruebas |
+| DECISIONES.md | Decisiones y justificaciones |
+| BITACORA_IA.md | Registro del uso de inteligencia artificial |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Árbol de componentes implementado
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```mermaid
+flowchart TD
+    Layout["RootLayout · Server"] --> Navbar["Navbar · Client"]
+    Layout --> Pagina["Página actual · Server"]
+    Layout --> Footer["Footer · Server"]
+    Pagina --> Contacto["Contacto · Server"]
+    Contacto --> Titulo["SectionTitle · Server"]
+    Contacto --> Formulario["ContactForm · Server"]
+```
+
+La página actual cambia según la ruta visitada. El diagrama muestra
+el contenido implementado para la ruta /contacto.
+
+Navbar es Client Component porque utiliza usePathname para identificar
+la ruta actual y useState para abrir y cerrar el menú móvil.
+
+Footer, SectionTitle y ContactForm son Server Components.
+El formulario es solo una interfaz: no envía ni guarda mensajes.
+
+## Componentes preparados para integrar
+
+| Componente | Tipo | Uso previsto |
+|---|---|---|
+| Hero | Server | Banner de la página de inicio |
+| ProductCard | Server | Tarjetas del catálogo, con datos recibidos por props |
+
+## Estado del proyecto
+
+Avance inicial con componentes reutilizables, estilos compartidos,
+layout y página de contacto.
+
+Pendiente:
+- Completar el contenido de las demás páginas.
+- Integrar imágenes y datos reales.
+- Conectar Hero y ProductCard con las páginas.
+- Completar la ruta dinámica de productos.
+- Verificar la compilación y el diseño responsive.
+- Agregar evidencias, decisiones y bitácora de IA.
+
+El árbol de componentes se actualizará conforme avance el proyecto.
